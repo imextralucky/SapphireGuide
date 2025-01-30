@@ -509,3 +509,7 @@ Purchasing SapphireTool also helps support the development of SapphireOS and the
 
 # Further reading
 [valleyofdoom's PC-Tuning](https://github.com/valleyofdoom/PC-Tuning)
+
+* * *
+
+[SapphireOS](https://github.com/hickerdicker/sapphireos) is created by [Hickensa](https://github.com/hickerdicker)

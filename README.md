@@ -1,4 +1,4 @@
-# SapphireOS Install and Configuration Guide
+# [SapphireOS](https://github.com/hickerdicker/sapphireos) Install and Configuration Guide
 https://www.youtube.com/watch?v=KkfOyqv5FY0
 > SapphireOS has been my passion project for the last year and a half and it has taught me a lot about Windows and C# programming whilst also motivating me to get better at tweaking. This is the ultimate in-depth setup guide for it
 

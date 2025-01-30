@@ -11,8 +11,11 @@ The main difference is that Ultralite has even more components removed than Supe
 # What's the best Windows version?
 ### TL;DR: ➡️ Use Windows 11 24H2 😉
 **Windows 11 24H2** - This version generally performs the best for AMD processors, but due to internal Windows changes, there is no classic alt-tab and does not support Intel Core Duo processors or older.
+
 **Windows 11 23H2** - This version is more stable than 24H2, notably for Intel processors, but generally performs worse than 24H2.
+
 **Windows Server 2022** - This version is like Windows 10 22H2 but with native support for timer resolution and other Windows 11 features, and a lighter Explorer. However there are lots of driver issues, which may require modded drivers. Generally this version performs worse for AMD processors. Not supported by anticheats such as Faceit.
+
 **Windows 10 22H2** - This version is not recommended to use, and may be discontinued soon. Use this version only if you dislike Windows 11 and are unable to use Server. There is no native timer resolution support and generally performs the worst out of the 4 versions.
 
 # Installing SapphireOS
@@ -62,6 +65,7 @@ Ventoy allows you to boot multiple images off of one USB drive. This way, you ca
 
 ### Installing
 After you have prepared your USB drive for installation, you now need to boot into the USB drive.
+
 You will have to boot into your BIOS and rearrange the boot order to prioritze the USB drive, or directly boot to the USB drive via the boot menu. Afterwards, follow the Windows installer.
 
 ## Installing without a USB

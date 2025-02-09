@@ -321,7 +321,7 @@ Using `shell:startup`:
 4. Drag and drop your created shortcut into the opened folder. Replace or delete the old `SetTimerResolution.exe` shortcut if it exists
 - At this point you may sign in and out of Windows or restart. If you wish to avoid doing this, follow the next steps
 5. Open Task Manager and find the `SetTimerResolution` background process. Right-click and click **End task**
-6. Launch the new shortcut. Alternatively, you may sign in and out of Windows, or restart.
+6. Launch the new shortcut. Alternatively, you may sign in and out of Windows or restart
 
 Using the registry:
 1. Press `Win + R` and enter `shell:startup`

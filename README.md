@@ -283,6 +283,8 @@ After installing your drivers and applying tweaks, please reboot your machine.
 The default timer resolution value in SapphireOS is .507 ms. It is possible to further fine-tune this value for your system by following the process below. Keep in mind that this process may take a long time to complete.
 
 ### Finding stable timer resolution
+Finding a stable timer resolution involves running a stress test while measuring the current timer resolution. The reccomended stress test is CPU-Z. Tests like Prime95, Linpack Xtreme, etc. may also be used, especially regarding accuarcy, but these tests put an unrealistic load onto the CPU compared to CPU-Z.
+
 1. Download [CPU-Z](https://cpuid.com/softwares/cpu-z.html) and [MicroAdjust](https://github.com/HickerDicker/microadjust/releases/download/release/MicroAdjust.exe)
 2. Open MicroAdjust and CPU-Z
 3. In CPU-Z, click the **Bench** tab, then click **Stress CPU**

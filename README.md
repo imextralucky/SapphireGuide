@@ -280,28 +280,56 @@ After installing your drivers and applying tweaks, please reboot your machine.
 # Advanced Tweaks
 #### ⚠️ **CAUTION: THESE TWEAKS ARE FOR ADVANCED USERS ONLY. DO NOT USE IF YOU ARE UNABLE TO RISK DAMAGING HARDWARE.**
 ## Micro-adjusting timer resolution
-The default timer resolution value in SapphireOS is .507 ms. It is possible to further fine-tune this value for your system by following the process below. Keep in mind that this process may take hours to complete.
+The default timer resolution value in SapphireOS is .507 ms. It is possible to further fine-tune this value for your system by following the process below. Keep in mind that this process may take a long time to complete.
 
-1. Download Linpack Xtreme and MicroAdjust
-2. Open Linpack Xtreme
-- Press **2**, then press the number for the **amount of RAM you have minus 3**
-- Enter **1000** for number of trials
-- Press **Y** for to use all threads
-- Press **N** for disable sleep mode and CPUID HWMonitor
-- Press enter to begin the test.
-3. While the test is running, open MicroAdjust
-4. Enter the values you wish to use, or keep default. Press start
-5. When the test is finished, you will be notified that `results.txt` was created.
-- Stop Linpack Xtreme after the test has finished.
-7. Navigate to `C:\TimerRes`
-8. Open the site: https://chart-studio.plotly.com/create/#/
+### Finding stable timer resolution
+1. Download [CPU-Z](https://cpuid.com/softwares/cpu-z.html) and [MicroAdjust](https://github.com/HickerDicker/microadjust/releases/download/release/MicroAdjust.exe)
+2. Open MicroAdjust and CPU-Z
+3. In CPU-Z, click the **Bench** tab, then click **Stress CPU**
+4. While the CPU stress test is running, go to the MicroAdjust window. Enter the values you wish to use, or keep default. Press start
+- `start`: starting resolution value
+- `end`: ending resolution value
+- `increment`: amount resolution increases each test (5: 5000, 5005, ...)
+- `samples`: amount of tests ran for each increment
+- Lower the increment value and increase the amount of samples for more accurate testing (will take longer).
+- Default values: `5000` `5100` `5` `50`
+- Using default values, the testing will take between 5-15 minutes to finish.
+5. After starting the test, wait and do not use your computer. When the test is finished, you will be notified that `results.txt` was created.
+- After the test is finished, in CPU-Z, press **Stop** and close.
+6. Navigate to `C:\TimerRes`
+7. You can either look for the proper value manually in `results.txt` or graph the results. If you have many samples, you may want to graph the results instead.
+Using `results.txt`:
+- Find the line with the lowest **Max** value
+To graph the results:
+- Open the site: https://chart-studio.plotly.com/create/#/
 - Press **Import** and upload `results.txt`
 - Press **Trace**
 - Set **Type** to Line, **X** to RequestedResolutionMs, **Y** to DeltaMs
 - Search for the lowest number (first number). Copy this number.
-9. Open Command Prompt and enter the following command:
+
+### Setting timer resolution
+You can apply the timer resolution via `shell:startup` or using the registry.
+
+Using `shell:startup`:
+1. Navigate to `C:\TimerRes` and right-click `SetTimerResolution.exe` and click **Create Shortcut**
+- Rename the shortcut to `SetTimerResolution.exe` if not already named
+2. Right-click the created shortcut and select **Properties**
+- Set **Target** to `C:\TimerRes\SetTimerResolution.exe --resolution #### --no-console`, replacing #### with the value previously found, e.g 5070 (0.507ms)
+3. Press `Win + R` and enter `shell:startup`
+4. Drag and drop your created shortcut into the opened folder. Replace or delete the old `SetTimerResolution.exe` shortcut if it exists
+- At this point you may sign in and out of Windows or restart. If you wish to avoid doing this, follow the next steps
+5. Open Task Manager and find the `SetTimerResolution` background process. Right-click and click **End task**
+6. Launch the new shortcut. Alternatively, you may sign in and out of Windows, or restart.
+
+Using the registry:
+1. Press `Win + R` and enter `shell:startup`
+- Inside the opened folder, delete the `SetTimerResolution.exe` shortcut if it exists
+2. Open Command Prompt and enter the following command:
 `reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "TimerResolution" /t REG_SZ /d "C:\TimerRes\SetTimerResolution.exe --resolution #### --no-console" /f`
-- Change #### to the value you have copied, e.g 5070 (0.507ms)
+- Replace #### with the value previously found, e.g 5070 (0.507ms)
+- At this point you may sign in and out of Windows or restart. If you wish to avoid doing this, follow the next steps
+3. Open Task Manager and find the `SetTimerResolution` background process. Right-click and click **End task**
+4. Launch `SetTimerResolution.exe` with the following parameters: `--resolution #### --no-console`, otherwise sign in and out of Windows or restart
 
 ## XHCI-IMOD Setup
 *Requires VulnerableDriverBlocklistEnable*

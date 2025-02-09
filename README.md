@@ -300,8 +300,10 @@ Finding a stable timer resolution involves running a stress test while measuring
 - After the test is finished, in CPU-Z, press **Stop** and close.
 6. Navigate to `C:\TimerRes`
 7. You can either look for the proper value manually in `results.txt` or graph the results. If you have many samples, you may want to graph the results instead.
+
 Using `results.txt`:
 - Find the line with the lowest **Max** value
+
 To graph the results:
 - Open the site: https://chart-studio.plotly.com/create/#/
 - Press **Import** and upload `results.txt`

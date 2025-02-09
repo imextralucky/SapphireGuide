@@ -4,6 +4,42 @@ https://www.youtube.com/watch?v=KkfOyqv5FY0
 
 This is an in-depth guide on how to install and setup SapphireOS. Please read this guide thoroughly as to avoid making any mistakes
 
+# Table of Contents
+
+- [What's the difference between Superlite and Ultralite?](#whats-the-difference-between-superlite-and-ultralite)
+- [What's the best Windows version?](#whats-the-best-windows-version)
+- [Installing SapphireOS](#installing-sapphireos)
+  - [Installing via USB](#installing-via-usb)
+    - [Setting up USB using Rufus](#setting-up-usb-using-rufus)
+    - [Setting up USB using Ventoy](#setting-up-usb-using-ventoy)
+    - [Installing](#installing)
+  - [Installing without a USB](#installing-without-a-usb)
+- [Setting up SapphireOS (First time boot)](#setting-up-sapphireos-first-time-boot)
+  - [Installing a browser](#installing-a-browser)
+  - [Installing drivers](#installing-drivers)
+    - [Finding the model/manufacturer](#finding-the-modelmanufacturer)
+  - [Installing and manually debloating GPU driver](#installing-and-manually-debloating-gpu-driver)
+    - [AMD](#amd)
+    - [NVIDIA](#nvidia)
+  - [Configuring SapphireTool (free)](#configuring-sapphiretool-free)
+    - [Tweaks](#tweaks)
+    - [Gaming Tweaks](#gaming-tweaks)
+    - [Nvidia GPU Tweaks](#nvidia-gpu-tweaks)
+    - [AMD GPU Tweaks](#amd-gpu-tweaks)
+    - [Useful Tools](#useful-tools)
+- [Advanced Tweaks](#advanced-tweaks)
+  - [Micro-adjusting timer resolution](#micro-adjusting-timer-resolution)
+    - [Finding stable timer resolution](#finding-stable-timer-resolution)
+    - [Setting timer resolution](#setting-timer-resolution)
+  - [XHCI-IMOD Setup](#xhci-imod-setup)
+  - [Disabling Device Manager Devices](#disabling-device-manager-devices)
+- [BIOS Configuration](#bios-configuration)
+  - [Visible](#visible)
+  - [Hidden (SCEWIN)](#hidden-scewin)
+- [Recovering a broken install](#recovering-a-broken-install)
+- [What next?](#what-next)
+- [Further reading](#further-reading)
+
 # What's the difference between Superlite and Ultralite?
 ### TL;DR: ➡️ Use Ultralite if you only game, Superlite if you do more than game 😉
 The main difference is that Ultralite has even more components removed than Superlite, catering to users who want a lighter ISO and are less concerned about compatibility. **Performance differences are minimal**, though Ultralite may boot slightly faster as it loads fewer files. Both versions include the same system tweaks.

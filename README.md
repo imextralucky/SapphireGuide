@@ -293,23 +293,21 @@ Finding a stable timer resolution involves running a stress test while measuring
 - `end`: ending resolution value
 - `increment`: amount resolution increases each test (5: 5000, 5005, ...)
 - `samples`: amount of tests ran for each increment
-- Lower the increment value and increase the amount of samples for more accurate testing (will take longer).
+- Lower the increment value and increase the amount of samples for more accurate testing (will take longer)
 - Default values: `5000` `5100` `5` `50`
-- Using default values, the testing will take between 5-15 minutes to finish.
-5. After starting the test, wait and do not use your computer. When the test is finished, you will be notified that `results.txt` was created.
-- After the test is finished, in CPU-Z, press **Stop** and close.
+- Using default values, the testing will take between 5-15 minutes to finish
+5. After starting the test, wait and do not use your computer. When the test is finished, you will be notified that `results.txt` was created
+- After the test is finished, in CPU-Z, press **Stop** and close
 6. Navigate to `C:\TimerRes`
-7. You can either look for the proper value manually in `results.txt` or graph the results. If you have many samples, you may want to graph the results instead.
-
-Using `results.txt`:
-- Find the line with the lowest **Max** value
-
-To graph the results:
-- Open the site: https://chart-studio.plotly.com/create/#/
-- Press **Import** and upload `results.txt`
-- Press **Trace**
-- Set **Type** to Line, **X** to RequestedResolutionMs, **Y** to DeltaMs
-- Search for the lowest number (first number). Copy this number.
+7. You can either look for the proper value manually in `results.txt` or graph the results. If you have many samples, you may want to graph the results instead
+- Using `results.txt`:
+  - Find the line with the lowest **Max** value
+- To graph the results:
+  - Open the site: https://chart-studio.plotly.com/create/#/
+  - Press **Import** and upload `results.txt`
+  - Press **Trace**
+  - Set **Type** to Line, **X** to RequestedResolutionMs, **Y** to DeltaMs
+  - Search for the lowest number (first number). Copy this number
 
 ### Setting timer resolution
 You can apply the timer resolution via `shell:startup` or using the registry.

@@ -342,8 +342,8 @@ Finding a stable timer resolution involves running a stress test while measuring
   - Open the site: https://chart-studio.plotly.com/create/#/
   - Press **Import** and upload `results.txt`
   - Press **Trace**
-  - Set **Type** to Line, **X** to RequestedResolutionMs, **Y** to DeltaMs
-  - Search for the lowest number (first number). Copy this number
+  - Set **Type** to Line, **X** to RequestedResolutionMs, **Y** to Max or DeltaMs
+  - Search for the lowest **Max** value. Copy this number
 
 ### Setting timer resolution
 You can apply the timer resolution via `shell:startup` or using the registry.
@@ -363,7 +363,7 @@ Using the registry:
 1. Press `Win + R` and enter `shell:startup`
 - Inside the opened folder, delete the `SetTimerResolution.exe` shortcut if it exists
 2. Open Command Prompt and enter the following command:
-`reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "TimerResolution" /t REG_SZ /d "C:\TimerRes\SetTimerResolution.exe --resolution #### --no-console" /f`
+`reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "TimerResolution" /t REG_SZ /d "C:\TimerRes\SetTimerResolution.exe --resolution #### --no-console" /f`
 - Replace #### with the value previously found, e.g 5070 (0.507ms)
 - At this point you may sign in and out of Windows or restart. If you wish to avoid doing this, follow the next steps
 3. Open Task Manager and find the `SetTimerResolution` background process. Right-click and click **End task**

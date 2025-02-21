@@ -463,7 +463,7 @@ We will be applying 5 affinities (GPU, USB - typically 2 controllers, NIC, audio
 
 ![affinity.png](media/affinity/affinity.png)
 
-In this example, CPU 4 is our best core, followed by CPU 2, CPU 8, CPU 6, CPU 10
+In this example, **CPU 4** is our best core, followed by **CPU 2**, **CPU 8**, **CPU 6**, and **CPU 10**
 
 ### Applying affinities
 We will set our affinities using [Microsoft Interrupt Affinity Tool](https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool/)

@@ -459,9 +459,9 @@ For reference: Green values indicate the highest value for that perecntile out o
 
 For your best core, the FPS should be relativity high, with a focus on 1 %tile to 0.005% Low. It should have mostly yellow & green values.
 
-We will be applying 4 affinities (GPU, USB, NIC, audio), so find your best 4 cores.
+We will be applying 5 affinities (GPU, USB - typically 2 controllers, NIC, audio), so find your best 5 cores.
 
-In this example, CPU 4 is our best core. followed by CPU 2,.......
+In this example, CPU 4 is our best core, followed by CPU 2, CPU 8, CPU 6, CPU 10
 
 ### Applying affinities
 We will set our affinities using [Microsoft Interrupt Affinity Tool](https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool/)

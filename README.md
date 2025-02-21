@@ -461,6 +461,8 @@ For your best core, the FPS should be relativity high, with a focus on 1 %tile t
 
 We will be applying 5 affinities (GPU, USB - typically 2 controllers, NIC, audio), so find your best 5 cores.
 
+![affinity.png](media/affinity/affinity.png)
+
 In this example, CPU 4 is our best core, followed by CPU 2, CPU 8, CPU 6, CPU 10
 
 ### Applying affinities

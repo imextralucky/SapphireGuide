@@ -33,6 +33,14 @@ This is an in-depth guide on how to install and setup SapphireOS. Please read th
     - [Setting timer resolution](#setting-timer-resolution)
   - [XHCI-IMOD Setup](#xhci-imod-setup)
   - [Disabling Device Manager Devices](#disabling-device-manager-devices)
+  - [Setting Affinities](#setting-affinities)
+    - [Benchmarking cores](#benchmarking-cores)
+      - [Finding your best cores](#finding-your-best-cores)
+    - [Applying affinities](#applying-affinities)
+      - [GPU](#gpu)
+      - [USB controller](#usb-controller)
+      - [NIC/Ethernet controller](#nicethernet-controller)
+      - [Audio controller](#audio-controller)
 - [BIOS Configuration](#bios-configuration)
   - [Visible](#visible)
   - [Hidden (SCEWIN)](#hidden-scewin)
@@ -422,6 +430,66 @@ devmanview.exe /disable "Microsoft Print to PDF"
 devmanview.exe /disable "Microsoft XPS Document Writer"
 ```
 
+## Setting Affinities
+You can set CPU affinities for your GPU, USB controller, NIC, and audio controller for better performance and less congestion.
+
+### Benchmarking cores
+1. Download [AutoGpuAffinity](https://github.com/valleyofdoom/AutoGpuAffinity/releases/download/1.0.0/AutoGpuAffinity.zip) and extract the .zip
+2. Open the extracted folder and edit `config.ini`
+3. In the `custom_cpus=[]` line, do the following:
+If HT/SMT is enabled, set every other CPU #, starting with 0
+- You only want to benchmark your actual cores and not threads, which is why we skip every 1 CPU.
+
+Example: for an 8-core Ryzen/8 P-core Intel CPU with HT/SMT on, set the line to:
+
+```custom_cpus=[0,2,4,6,8,10,12,14]```
+
+If HT/SMT is disabled, set every CPU #
+- Since HT/SMT Off is only comprised of actual cores, we do not need to skip any CPUs
+
+Example: for an 8-core Ryzen/8 P-core Intel CPU with HT/SMT off:
+
+```custom_cpus=[0..7]```
+
+4. Close everything running in the background and run `AutoGpuAffinity.exe`
+- Wait until test is finished, do not touch computer while running! When the test is finished, a window will pop up showing the CPUs tested
+
+#### Finding your best cores
+For reference: Green values indicate the highest value for that perecntile out of all CPUs. Yellow indicates the 2nd-highest value
+
+For your best core, the FPS should be relativity high, with a focus on 1 %tile to 0.005% Low. It should have mostly yellow & green values.
+
+We will be applying 4 affinities (GPU, USB, NIC, audio), so find your best 4 cores.
+
+In this example, CPU 4 is our best core. followed by CPU 2,.......
+
+### Applying affinities
+We will set our affinities using [Microsoft Interrupt Affinity Tool](https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool/)
+- Navigate to and run `C:\PostInstall\Tweaks\Interrupt Affinity Policy Tool.exe`
+
+> [!WARNING]
+> Do not use **CPU 0** for any affinities. Windows uses CPU 0 by default, and assigning affinities to it will cause congestion.
+> 
+> Do not use the same **CPU #** for multiple affinities. Assigning affinities to the same core will cause congestion.
+
+#### GPU
+1. Inside the **Interrupt-Affinity Policy Configuration Tool** window, scroll until you find your GPU name. Select it
+- If the error *Registry valye for affinity mask has unexpected type.* appear, it is safe to ignore. Press **OK**
+2. Press **Set Mask** and check your best core. Press **OK**
+
+#### USB controller
+1. Scroll until you find your USB controller, usually labeled as `USB xHCI Compliant Host Controller`. There is 1 for each USB hub on your motherboard.
+2. Press **Set Mask** and check your 2nd best core. Press **OK**
+3. If there is another `USB xHCI Compliant Host Controller`, set it to your 3rd best core and so on
+
+#### NIC/Ethernet controller
+1. Scroll until you find your Ethernet controller, usually labeled with `PCIe`, `GbE`, `Ethernet`, and the brand name (Realtek, Intel, etc.)
+2. Press **Set Mask** and check your next best core. Press **OK**
+
+#### Audio controller
+1. Scroll until you find your audio controller, usually labeled with the brand name and `High Definition Audio Controller`
+2. Press **Set Mask** and check your next best core. Press **OK**
+
 ## BIOS Configuration
 This section is not finished.
 #### 🛑 **WARNING: IMPROPER BIOS CONFIGURATION MAY RESULT IN PERMANENT DAMAGE TO HARDWARE.**
@@ -433,6 +501,7 @@ Visible settings typically relate to overclocking, power-saving features, and di
 
 **Disable Unnecessary Devices**
 Generally, you can follow the rule of "If you're not using it, disable it".
+
 Look to disable the following if you do not use it:
 - WLAN, Wi-Fi
 - Bluetooth
@@ -442,11 +511,14 @@ Look to disable the following if you do not use it:
 
 **Resizable Bar (ReBAR)**
 Enabling ReBAR generally improves performance, but may introduce performance regressions in some games. Enabling ReBAR requires you to set GPT/UEFI mode and enable Above 4G Decoding in BIOS.
+
 You can check ReBAR status with GPU-Z.
+
 If your motherboard does not support enabling ReBAR unsupported motherboards, consider viewing ReBarUEFI/NvStrapsReBar.
 
 **Hyperthreading/Simultaneous Multithreading**
 If you have enough cores for the games you play (generally 8+ cores) then consider disabling HT/SMT. This feature is beneficial for highly threaded operations such as encoding, compiling, and rendering, however using multiple execution threads per core can increase latency and jitter. Disabling also increases overclocking potential with lower temperatures.
+
 In most cases, you should test if this makes your games perform better. The potential latency reduction is not worth it for worse performance.
 
 **Virtualization/SVM Mode**

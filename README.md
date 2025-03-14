@@ -478,6 +478,8 @@ We will set our affinities using [Microsoft Interrupt Affinity Tool](https://www
 1. Inside the **Interrupt-Affinity Policy Configuration Tool** window, scroll until you find your GPU name. Select it
 - If the error *Registry valye for affinity mask has unexpected type.* appear, it is safe to ignore. Press **OK**
 2. Press **Set Mask** and check your best core. Press **OK**
+3. Also look for **PCI Express Root Port**
+- You will have to find the one that corresponds to your GPU. When the device is restarted, your screen should go black for a few seconds, signaling your GPU has been restarted.
 
 #### USB controller
 1. Scroll until you find your USB controller, usually labeled as `USB xHCI Compliant Host Controller`. There is 1 for each USB hub on your motherboard.
